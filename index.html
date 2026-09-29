@@ -45,38 +45,52 @@
             <form id="add-book-form">
 
                 <h3>Add Book</h3>
+                <div class="title-input-class">
+                    <label for="book-title-input">Title</label>
+                    <input type="text" id="book-title-input" required>
+                </div>
 
-                <label for="book-title-input">Title</label>
-                <input type="text" id="book-title-input" required>
+                <div class="author-input-class">
+                    <label for="book-author-input">Author</label>
+                    <input type="text" id="book-author-input" required>
+                </div>
 
-                <label for="book-author-input">Author</label>
-                <input type="text" id="book-author-input" required>
+                <div class="genre-input-class">
+                    <label for="book-genre-input">Genre</label>
+                    <input type="text" id="book-genre-input" required>
+                    </div>
 
-                <label for="book-genre-input">Genre</label>
-                <input type="text" id="book-genre-input" required>
+                    <div class="pages-input-class">
+                    <label for="book-pages-input">Pages</label>
+                    <input type="number" id="book-pages-input" min="1">
+                </div>
 
-                <label for="book-pages-input">Pages</label>
-                <input type="number" id="book-pages-input" min="1">
 
-                <label for="book-status-input">Status</label>
-                <select id="book-status-input" required>
-                    <option value="want-to-read">Want to Read</option>
-                    <option value="reading">Reading</option>
-                    <option value="finished">Finished</option>
-                </select>
+                <div class="status-input-class">
+                    <label for="book-status-input">Status</label>
+                    <select id="book-status-input" required>
+                        <option value="want-to-read">Want to Read</option>
+                        <option value="reading">Reading</option>
+                        <option value="finished">Finished</option>
+                    </select>
+                </div>
 
-                <label for="book-rating-input">Rating</label>
-                <select id="book-rating-input">
-                    <option value="">No Rating</option>
-                    <option value="1">★</option>
-                    <option value="2">★★</option>
-                    <option value="3">★★★</option>
-                    <option value="4">★★★★</option>
-                    <option value="5">★★★★★</option>
-                </select>
+                <div class="rating-input-class">
+                    <label for="book-rating-input">Rating</label>
+                    <select id="book-rating-input">
+                        <option value="">No Rating</option>
+                        <option value="1">★</option>
+                        <option value="2">★★</option>
+                        <option value="3">★★★</option>
+                        <option value="4">★★★★</option>
+                        <option value="5">★★★★★</option>
+                    </select>
+                </div>
 
-                <label for="book-notes-input">Notes</label>
-                <textarea id="book-notes-input"></textarea>
+                <div class="notes-input-class">
+                    <label for="book-notes-input">Notes</label>
+                    <textarea id="book-notes-input"></textarea>
+                </div>
 
                 <button type="submit" id="save-book-button">Add Book</button>
                 <button type="button" id="cancel-add-book-button">Cancel</button>

@@ -123,6 +123,8 @@ export function renderSelectedBooks() {
         displayedBooks.sort((a ,b) => a.pages - b.pages);
     }
 
+    displayedBooks = displayedBooks.filter(book => book.title?.toLowerCase().includes(elements.searchBooksInput.value.toLowerCase()));
+
     renderBooks(displayedBooks, elements.booksContainer, true);
 }
 

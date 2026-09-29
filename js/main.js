@@ -4,13 +4,14 @@ import { renderBooks, renderSelectedBooks, renderOverview } from "./rendering.js
 import { state, loadState } from "./state.js";
 
 function initialize() {
+    elements.bookView.value = "all";
+    elements.bookSort.value = "none";
+    elements.searchBooksInput.value = "";
+
     loadState();
     showSection(elements.overviewSection);
     renderBooks(state.books, elements.booksContainer, true);
     renderOverview()
-
-    elements.bookView.value = "all";
-    elements.bookSort.value = "none";
 }
 
 function clearDialog() {
@@ -97,5 +98,6 @@ elements.saveBookButton.addEventListener("click", () => {
 
 elements.bookView.addEventListener("change", renderSelectedBooks);
 elements.bookSort.addEventListener("change", renderSelectedBooks);
+elements.searchBooksInput.addEventListener("change", renderSelectedBooks);
 
 initialize();

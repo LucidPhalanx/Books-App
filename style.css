@@ -96,4 +96,6 @@ button:hover {
     background-color: red;
 }
 
-
+.title-input-class, .author-input-class, .genre-input-class, .pages-input-class, .status-input-class, .rating-input-class, .notes-input-class {
+  margin-bottom: 20px;
+}
