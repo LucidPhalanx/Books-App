@@ -1,9 +1,8 @@
 export const state = {
     books: [],
-    currentView: "all",
-    searchQuery: "",
-    currentSort: "",
-    currentBookId: ""
+    currentBookId: "",
+    genresRead: [],
+    authorsRead: []
 }
 
 export function saveState() {

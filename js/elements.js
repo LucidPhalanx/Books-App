@@ -17,6 +17,8 @@ export const elements = {
     totalBooksSpan: document.querySelector("#total-books-span"),
     readingSpan: document.querySelector("#reading-span"),
     finishedSpan: document.querySelector("#finished-span"),
+    genreContainerUnorderedList: document.querySelector("#genre-container-ul"),
+    authorContainerUnorderedList: document.querySelector("#authors-container-ul"),
 
     // Add book
     addBookButton: document.querySelector("#add-book-button"),

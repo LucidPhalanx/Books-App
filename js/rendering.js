@@ -138,4 +138,20 @@ export function renderOverview() {
     elements.totalBooksSpan.textContent = state.books.length;
     elements.readingSpan.textContent = state.books.filter(book => book.status === "reading").length;
     elements.finishedSpan.textContent = state.books.filter(book => book.status === "finished").length;
+    elements.genreContainerUnorderedList.innerHTML = "";
+    elements.authorContainerUnorderedList.innerHTML = "";
+
+    for (const genre of state.genresRead) {
+        const genreListItem = document.createElement("li");
+        genreListItem.textContent = genre;
+
+        elements.genreContainerUnorderedList.appendChild(genreListItem);
+    }
+
+    for (const author of state.authorsRead) {
+        const authorListItem = document.createElement("li");
+        authorListItem.textContent = author;
+
+        elements.authorContainerUnorderedList.appendChild(authorListItem);
+    }
 }

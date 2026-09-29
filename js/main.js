@@ -1,5 +1,5 @@
 import { elements } from "./elements.js";
-import { addBook, editBook } from "./books.js";
+import { addBook, editBook, updateState} from "./books.js";
 import { renderBooks, renderSelectedBooks, renderOverview } from "./rendering.js";
 import { state, loadState } from "./state.js";
 
@@ -12,7 +12,8 @@ function initialize() {
     loadState();
     showSection(elements.overviewSection);
     renderBooks(state.books, elements.booksContainer, true);
-    renderOverview()
+    updateState();
+    renderOverview();
 }
 
 function clearDialog() {

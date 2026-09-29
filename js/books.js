@@ -13,7 +13,8 @@ export function addBook(title, author, genre, pages, status, rating, notes) {
         rating: rating === null ? null : Number(rating),
         notes: notes
     });
-
+    
+    updateState();
     saveState();
 }
 
@@ -24,6 +25,7 @@ export function deleteBook(id) {
     }
 
     state.books.splice(bookToDeleteIndex, 1);
+    updateState();
     saveState();
 }
 
@@ -43,6 +45,21 @@ export function editBook(id, title, author, genre, pages, status, rating, notes)
         rating: rating === null ? null : Number(rating),
         notes: notes
     };
-
+    updateState();
     saveState();
+}
+
+export function updateState() {
+    state.authorsRead = [];
+    state.genresRead = [];
+
+    for (const book of state.books) {
+        if (!state.authorsRead.includes(book.author)) {
+            state.authorsRead.push(book.author);
+        };
+
+        if (!state.genresRead.includes(book.genre)) {
+            state.genresRead.push(book.genre);
+        };
+    }
 }

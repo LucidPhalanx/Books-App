@@ -104,3 +104,7 @@ button:hover {
 .notes-input-class {
   text-align: top;
 }
+
+li {
+  margin-bottom: 10px;
+}
