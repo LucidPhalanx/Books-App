@@ -56,6 +56,7 @@ export function renderBooks(array = state.books, container, showActions = true) 
 
             const bookEditButton = document.createElement("button");
             bookEditButton.textContent = "Edit";
+            bookEditButton.style.marginLeft = "5px";
 
             bookDeleteButton.addEventListener("click", () => {
                 deleteBook(book.id);
