@@ -33,7 +33,11 @@ export function renderBooks(array = state.books, container, showActions = true) 
 
         const bookRatingPara = document.createElement("p");
         if (book.rating !== null) {
-            bookRatingPara.textContent = `Rating: ${book.rating} Stars`;
+            const totalStars = 5;
+            const filledStars = "★".repeat(book.rating);
+            const emptyStars = "☆".repeat(totalStars - book.rating);
+            
+            bookRatingPara.textContent = `Rating: ${filledStars}${emptyStars}`;
         } else if (book.rating === null) {
             bookRatingPara.textContent = "No Rating given yet";
         }
