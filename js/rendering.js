@@ -60,11 +60,13 @@ export function renderBooks(array = state.books, container, showActions = true) 
             bookDeleteButton.addEventListener("click", () => {
                 deleteBook(book.id);
                 renderBooks(array, container, showActions);
+                renderOverview();
             })
 
             bookEditButton.addEventListener("click", () => {
                 state.currentBookId = book.id;
                 renderEditDialog(book.id);
+                renderOverview();
             })
 
             bookDiv.appendChild(bookDeleteButton);
@@ -73,6 +75,8 @@ export function renderBooks(array = state.books, container, showActions = true) 
 
         container.appendChild(bookDiv);
     }
+
+    renderOverview()
 }
 
 export function renderEditDialog(id) {
@@ -91,6 +95,7 @@ export function renderEditDialog(id) {
     elements.bookNotesInput.value = state.books[bookToEditIndex].notes;
 
     elements.addBookDialog.showModal();
+    
 }
 
 export function renderSelectedBooks() {
@@ -119,4 +124,10 @@ export function renderSelectedBooks() {
     }
 
     renderBooks(displayedBooks, elements.booksContainer, true);
+}
+
+export function renderOverview() {
+    elements.totalBooksSpan.textContent = state.books.length;
+    elements.readingSpan.textContent = state.books.filter(book => book.status === "reading").length;
+    elements.finishedSpan.textContent = state.books.filter(book => book.status === "finished").length;
 }

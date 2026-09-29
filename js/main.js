@@ -1,12 +1,13 @@
 import { elements } from "./elements.js";
 import { addBook, editBook } from "./books.js";
-import { renderBooks, renderSelectedBooks } from "./rendering.js";
+import { renderBooks, renderSelectedBooks, renderOverview } from "./rendering.js";
 import { state, loadState } from "./state.js";
 
 function initialize() {
     loadState();
     showSection(elements.overviewSection);
     renderBooks(state.books, elements.booksContainer, true);
+    renderOverview()
 
     elements.bookView.value = "all";
     elements.bookSort.value = "none";
@@ -40,6 +41,7 @@ function showSection(sectionToShow) {
 
 elements.overviewButton.addEventListener("click", () => {
     showSection(elements.overviewSection);
+    renderOverview()
 });
 
 elements.booksButton.addEventListener("click", () => {
@@ -48,17 +50,22 @@ elements.booksButton.addEventListener("click", () => {
 
 elements.readingButton.addEventListener("click", () => {
     showSection(elements.readingSection);
+    renderBooks(state.books.filter(book => book.status === "reading"), elements.currentlyReadingContainer, false);
 });
 
 elements.wantToReadButton.addEventListener("click", () => {
     showSection(elements.wantToReadSection);
+    renderBooks(state.books.filter(book => book.status === "want-to-read"), elements.wantToReadContainer, false);
 });
 
 elements.finishedButton.addEventListener("click", () => {
     showSection(elements.finishedSection);
+    renderBooks(state.books.filter(book => book.status === "finished"), elements.finishedContainer, false);
 });
 
 elements.addBookButton.addEventListener("click", () => {
+    elements.saveBookButton.textContent = "Add Book";
+    clearDialog();
     elements.addBookDialog.showModal();
 })
 
@@ -83,6 +90,8 @@ elements.saveBookButton.addEventListener("click", () => {
         editBook(state.currentBookId, title, author, genre, pages, status, rating, notes);
         renderBooks(state.books, elements.booksContainer, true);
         elements.saveBookButton.textContent = "Add Book";
+        state.currentBookId = "";
+        clearDialog();
     }
 })
 
