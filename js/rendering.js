@@ -80,8 +80,6 @@ export function renderBooks(array = state.books, container, showActions = true) 
 
         container.appendChild(bookDiv);
     }
-
-    renderOverview()
 }
 
 export function renderEditDialog(id) {
