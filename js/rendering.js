@@ -39,7 +39,7 @@ export function renderBooks(array = state.books, container, showActions = true) 
         }
 
         const bookNotesPara = document.createElement("p");
-        bookNotesPara.textContent = book.notes;
+        bookNotesPara.textContent = book.notes !== "" ? `Notes: ${book.notes}` : "";
 
         bookDiv.appendChild(bookTitleHeading);
         bookDiv.appendChild(bookAuthorPara);
