@@ -1,0 +1,119 @@
+import { elements } from "./elements.js";
+import { state } from "./state.js";
+import { deleteBook } from "./books.js";
+
+export function renderBooks(array = state.books) {
+    elements.booksContainer.innerHTML = "";
+
+    for (const book of array) {
+        const bookDiv = document.createElement("div");
+        bookDiv.id = book.id
+        bookDiv.classList.add("book");
+
+        const bookTitleHeading = document.createElement("h3");
+        bookTitleHeading.textContent = book.title;
+
+        const bookAuthorPara = document.createElement("p");
+        bookAuthorPara.textContent = `Author: ${book.author}`;
+
+        const bookGenrePara = document.createElement("p");
+        bookGenrePara.textContent = `Genre: ${book.genre}`;
+
+        const bookPagesPara = document.createElement("p");
+        bookPagesPara.textContent = book.pages !== null ? `Pages: ${book.pages}` : "";
+
+        const bookStatusPara = document.createElement("p");
+        if (book.status == "reading" ) {
+            bookStatusPara.textContent = "Status: Reading";
+        } else if (book.status == "finished") {
+            bookStatusPara.textContent = "Status: Finished";
+        } else if (book.status == "want-to-read") {
+            bookStatusPara.textContent = "Status: Want to read";
+        }
+
+        const bookRatingPara = document.createElement("p");
+        if (book.rating !== null) {
+            bookRatingPara.textContent = `Rating: ${book.rating} Stars`;
+        } else if (book.rating === null) {
+            bookRatingPara.textContent = "No Rating given yet";
+        }
+
+        const bookNotesPara = document.createElement("p");
+        bookNotesPara.textContent = book.notes;
+
+        const bookDeleteButton = document.createElement("button");
+        bookDeleteButton.textContent = "Delete";
+        bookDeleteButton.classList.add("deleteButton");
+
+        const bookEditButton = document.createElement("button");
+        bookEditButton.textContent = "Edit";
+
+        bookDeleteButton.addEventListener("click", () => {
+            deleteBook(book.id);
+            renderBooks(state.books, divToRender);
+        })
+
+        bookEditButton.addEventListener("click", () => {
+            state.currentBookId = book.id;
+            renderEditDialog(book.id);
+        })
+
+        bookDiv.appendChild(bookTitleHeading);
+        bookDiv.appendChild(bookAuthorPara);
+        bookDiv.appendChild(bookGenrePara);
+        bookDiv.appendChild(bookPagesPara);
+        bookDiv.appendChild(bookStatusPara);
+        bookDiv.appendChild(bookRatingPara);
+        bookDiv.appendChild(bookNotesPara);
+        bookDiv.appendChild(bookDeleteButton);
+        bookDiv.appendChild(bookEditButton);
+
+        elements.booksContainer.appendChild(bookDiv);
+    }
+}
+
+export function renderEditDialog(id) {
+    const bookToEditIndex = state.books.findIndex(book => book.id === id);
+    if (bookToEditIndex === -1) {
+        return;
+    }
+
+    elements.saveBookButton.textContent = "Edit";
+    elements.bookTitleInput.value = state.books[bookToEditIndex].title;
+    elements.bookAuthorInput.value = state.books[bookToEditIndex].author;
+    elements.bookGenreInput.value = state.books[bookToEditIndex].genre;
+    elements.bookPagesInput.value = state.books[bookToEditIndex].pages;
+    elements.bookStatusInput.value = state.books[bookToEditIndex].status;
+    elements.bookRatingInput.value = state.books[bookToEditIndex].rating;
+    elements.bookNotesInput.value = state.books[bookToEditIndex].notes;
+
+    elements.addBookDialog.showModal();
+}
+
+export function renderSelectedBooks() {
+    let displayedBooks = [...state.books];
+
+    if (elements.bookView.value == "reading") {
+        displayedBooks = displayedBooks.filter(book => book.status == "reading");
+    } else if (elements.bookView.value == "want-to-read") {
+        displayedBooks = displayedBooks.filter(book => book.status == "want-to-read");
+    }  else if (elements.bookView.value == "finished") {
+        displayedBooks = displayedBooks.filter(book => book.status == "finished");
+    }
+
+    if (elements.bookSort.value == "title-asc") {
+        displayedBooks.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (elements.bookSort.value == "title-desc") {
+        displayedBooks.sort((a, b) => b.title.localeCompare(a.title));
+    } else if (elements.bookSort.value == "rating-high") {
+        displayedBooks.sort((a, b) => b.rating - a.rating);
+    } else if (elements.bookSort.value == "rating-low") {
+        displayedBooks.sort((a, b) => a.rating - b.rating);
+    } else if (elements.bookSort.value == "pages-high") {
+        displayedBooks.sort((a, b) => b.pages - a.pages);
+    } else if (elements.bookSort.value == "pages-low") {
+        displayedBooks.sort((a ,b) => a.pages - b.pages);
+    }
+
+    renderBooks(displayedBooks);
+}

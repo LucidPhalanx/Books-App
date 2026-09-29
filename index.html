@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="top-bar">
+        <h1>Books App</h1>
+
+        <nav>
+            <button id="overview-button">Overview</button>
+            <button id="books-button">My Books</button>
+            <button id="reading-button">Reading</button>
+            <button id="want-to-read-button">Want to Read</button>
+            <button id="finished-button">Finished</button>
+        </nav>
+    </header>
+    <hr>
+
+    <section id="overview-section">
+        <div>
+            <p>Total Books: <span id="total-books-span">0</span></p>
+        </div>
+
+        <div>
+            <p>Reading: <span id="reading-span">0</span></p>
+        </div>
+
+        <div>
+            <p>Finished: <span id="finished-span">0</span></p>
+        </div>
+
+    </section>
+
+    <section id="books-section">
+
+        <h2>My Books</h2>
+
+        <button id="add-book-button">Add Book</button>
+
+        <dialog id="add-book-dialog">
+            <form id="add-book-form">
+
+                <h3>Add Book</h3>
+
+                <label for="book-title-input">Title</label>
+                <input type="text" id="book-title-input" required>
+
+                <label for="book-author-input">Author</label>
+                <input type="text" id="book-author-input" required>
+
+                <label for="book-genre-input">Genre</label>
+                <input type="text" id="book-genre-input" required>
+
+                <label for="book-pages-input">Pages</label>
+                <input type="number" id="book-pages-input" min="1">
+
+                <label for="book-status-input">Status</label>
+                <select id="book-status-input" required>
+                    <option value="want-to-read">Want to Read</option>
+                    <option value="reading">Reading</option>
+                    <option value="finished">Finished</option>
+                </select>
+
+                <label for="book-rating-input">Rating</label>
+                <select id="book-rating-input">
+                    <option value="">No Rating</option>
+                    <option value="1">★</option>
+                    <option value="2">★★</option>
+                    <option value="3">★★★</option>
+                    <option value="4">★★★★</option>
+                    <option value="5">★★★★★</option>
+                </select>
+
+                <label for="book-notes-input">Notes</label>
+                <textarea id="book-notes-input"></textarea>
+
+                <button type="submit" id="save-book-button">Add Book</button>
+                <button type="button" id="cancel-add-book-button">Cancel</button>
+
+            </form>
+        </dialog>
+
+        <div class="book-controls">
+
+            <input
+                type="search"
+                placeholder="Search books..."
+                id="search-books-input"
+            >
+
+            <label for="book-view">View</label>
+            <select id="book-view">
+                <option value="all">All Books</option>
+                <option value="reading">Reading</option>
+                <option value="want-to-read">Want to Read</option>
+                <option value="finished">Finished</option>
+            </select>
+
+            <label for="book-sort">Sort</label>
+            <select id="book-sort">
+                <option value="none">Default</option>
+                <option value="title-asc">Title A-Z</option>
+                <option value="title-desc">Title Z-A</option>
+                <option value="rating-high">Rating: High to Low</option>
+                <option value="rating-low">Rating: Low to High</option>
+                <option value="pages-high">Pages: High to Low</option>
+                <option value="pages-low">Pages: Low to High</option>
+            </select>
+        </div>
+
+        <div id="books-container"></div>
+
+    </section>
+
+
+
+    <section id="reading-section">
+        <h2>Currently Reading</h2>
+        <div id="currently-reading-container"></div>
+
+    </section>
+
+    <section id="want-to-read-section">
+        <h2>Want to Read</h2>
+        <div id="want-to-read-container"></div>
+
+    </section>
+
+    <section id="finished-section">
+        <h2>Finished Books</h2>
+        <div id="finished-books-container"></div>
+
+    </section>
+    
+
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
