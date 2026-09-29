@@ -89,12 +89,14 @@ elements.saveBookButton.addEventListener("click", () => {
         addBook(title, author, genre, pages, status, rating, notes);
         renderBooks(state.books, elements.booksContainer, true);
         clearDialog();
+        renderOverview();
     } else if (elements.saveBookButton.textContent === "Edit") {
         editBook(state.currentBookId, title, author, genre, pages, status, rating, notes);
         renderBooks(state.books, elements.booksContainer, true);
         elements.saveBookButton.textContent = "Add Book";
         state.currentBookId = "";
         clearDialog();
+        renderOverview();
     }
 })
 

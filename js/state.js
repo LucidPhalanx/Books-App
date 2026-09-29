@@ -2,7 +2,8 @@ export const state = {
     books: [],
     currentBookId: "",
     genresRead: [],
-    authorsRead: []
+    authorsRead: [],
+    booksByAuthors: [],
 }
 
 export function saveState() {

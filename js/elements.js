@@ -19,6 +19,7 @@ export const elements = {
     finishedSpan: document.querySelector("#finished-span"),
     genreContainerUnorderedList: document.querySelector("#genre-container-ul"),
     authorContainerUnorderedList: document.querySelector("#authors-container-ul"),
+    booksByAuthorsContainer: document.querySelector("#books-by-authors-container"),
 
     // Add book
     addBookButton: document.querySelector("#add-book-button"),

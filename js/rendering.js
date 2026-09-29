@@ -140,6 +140,7 @@ export function renderOverview() {
     elements.finishedSpan.textContent = state.books.filter(book => book.status === "finished").length;
     elements.genreContainerUnorderedList.innerHTML = "";
     elements.authorContainerUnorderedList.innerHTML = "";
+    elements.booksByAuthorsContainer.innerHTML = "";
 
     for (const genre of state.genresRead) {
         const genreListItem = document.createElement("li");
@@ -153,5 +154,23 @@ export function renderOverview() {
         authorListItem.textContent = author;
 
         elements.authorContainerUnorderedList.appendChild(authorListItem);
+    }
+
+    for (const authorInfo of state.booksByAuthors) {
+        const booksByAuthorDiv = document.createElement("div");
+        const authorNameHeading = document.createElement("h3");
+        authorNameHeading.textContent = authorInfo.author + ":";
+        const booksByAuthorUnorderedList = document.createElement("ul");
+
+        booksByAuthorDiv.appendChild(authorNameHeading);
+        booksByAuthorDiv.appendChild(booksByAuthorUnorderedList);
+
+        for (const book of authorInfo.books) {
+            const bookNameListItem = document.createElement("li");
+            bookNameListItem.textContent = book.title;
+            booksByAuthorUnorderedList.appendChild(bookNameListItem);
+        }
+        
+        elements.booksByAuthorsContainer.appendChild(booksByAuthorDiv);
     }
 }

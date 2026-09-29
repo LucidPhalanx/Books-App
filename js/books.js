@@ -50,10 +50,12 @@ export function editBook(id, title, author, genre, pages, status, rating, notes)
 }
 
 export function updateState() {
+    const finishedBooks = state.books.filter(book => book.status === "finished");
     state.authorsRead = [];
     state.genresRead = [];
+    state.booksByAuthors = [];
 
-    for (const book of state.books) {
+    for (const book of finishedBooks) {
         if (!state.authorsRead.includes(book.author)) {
             state.authorsRead.push(book.author);
         };
@@ -62,4 +64,15 @@ export function updateState() {
             state.genresRead.push(book.genre);
         };
     }
+
+    for (const author of state.authorsRead) {
+        const booksByAuthor = finishedBooks.filter(book => book.author === author);
+
+        state.booksByAuthors.push({
+            author: author,
+            books: booksByAuthor
+        })
+    }
+
+    state.booksByAuthors.sort((a, b) => b.books.length - a.books.length);
 }
