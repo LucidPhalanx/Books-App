@@ -7,6 +7,7 @@ function initialize() {
     elements.bookView.value = "all";
     elements.bookSort.value = "none";
     elements.searchBooksInput.value = "";
+    elements.searchAuthorsInput.value = "";
 
     loadState();
     showSection(elements.overviewSection);
@@ -99,5 +100,6 @@ elements.saveBookButton.addEventListener("click", () => {
 elements.bookView.addEventListener("change", renderSelectedBooks);
 elements.bookSort.addEventListener("change", renderSelectedBooks);
 elements.searchBooksInput.addEventListener("change", renderSelectedBooks);
+elements.searchAuthorsInput.addEventListener("change", renderSelectedBooks);
 
 initialize();

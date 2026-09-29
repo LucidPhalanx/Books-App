@@ -124,6 +124,7 @@ export function renderSelectedBooks() {
     }
 
     displayedBooks = displayedBooks.filter(book => book.title?.toLowerCase().includes(elements.searchBooksInput.value.toLowerCase()));
+    displayedBooks = displayedBooks.filter(book => book.author?.toLowerCase().includes(elements.searchAuthorsInput.value.toLowerCase()));
 
     renderBooks(displayedBooks, elements.booksContainer, true);
 }

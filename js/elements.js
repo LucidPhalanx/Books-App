@@ -36,6 +36,7 @@ export const elements = {
 
     // Book controls
     searchBooksInput: document.querySelector("#search-books-input"),
+    searchAuthorsInput: document.querySelector("#search-authors-input"),
     bookView: document.querySelector("#book-view"),
     bookSort: document.querySelector("#book-sort"),
 
