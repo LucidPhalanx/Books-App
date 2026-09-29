@@ -6,7 +6,7 @@ import { state, loadState } from "./state.js";
 function initialize() {
     loadState();
     showSection(elements.overviewSection);
-    renderBooks();
+    renderBooks(state.books, elements.booksContainer, true);
 
     elements.bookView.value = "all";
     elements.bookSort.value = "none";
@@ -77,11 +77,11 @@ elements.saveBookButton.addEventListener("click", () => {
 
     if (elements.saveBookButton.textContent === "Add Book") {
         addBook(title, author, genre, pages, status, rating, notes);
-        renderBooks();
+        renderBooks(state.books, elements.booksContainer, true);
         clearDialog();
     } else if (elements.saveBookButton.textContent === "Edit") {
         editBook(state.currentBookId, title, author, genre, pages, status, rating, notes);
-        renderBooks();
+        renderBooks(state.books, elements.booksContainer, true);
         elements.saveBookButton.textContent = "Add Book";
     }
 })

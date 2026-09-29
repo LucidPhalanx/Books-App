@@ -2,8 +2,8 @@ import { elements } from "./elements.js";
 import { state } from "./state.js";
 import { deleteBook } from "./books.js";
 
-export function renderBooks(array = state.books) {
-    elements.booksContainer.innerHTML = "";
+export function renderBooks(array = state.books, container, showActions = true) {
+    container.innerHTML = "";
 
     for (const book of array) {
         const bookDiv = document.createElement("div");
@@ -41,23 +41,6 @@ export function renderBooks(array = state.books) {
         const bookNotesPara = document.createElement("p");
         bookNotesPara.textContent = book.notes;
 
-        const bookDeleteButton = document.createElement("button");
-        bookDeleteButton.textContent = "Delete";
-        bookDeleteButton.classList.add("deleteButton");
-
-        const bookEditButton = document.createElement("button");
-        bookEditButton.textContent = "Edit";
-
-        bookDeleteButton.addEventListener("click", () => {
-            deleteBook(book.id);
-            renderBooks(state.books, divToRender);
-        })
-
-        bookEditButton.addEventListener("click", () => {
-            state.currentBookId = book.id;
-            renderEditDialog(book.id);
-        })
-
         bookDiv.appendChild(bookTitleHeading);
         bookDiv.appendChild(bookAuthorPara);
         bookDiv.appendChild(bookGenrePara);
@@ -65,10 +48,30 @@ export function renderBooks(array = state.books) {
         bookDiv.appendChild(bookStatusPara);
         bookDiv.appendChild(bookRatingPara);
         bookDiv.appendChild(bookNotesPara);
-        bookDiv.appendChild(bookDeleteButton);
-        bookDiv.appendChild(bookEditButton);
+        
+        if (showActions == true) {
+            const bookDeleteButton = document.createElement("button");
+            bookDeleteButton.textContent = "Delete";
+            bookDeleteButton.classList.add("deleteButton");
 
-        elements.booksContainer.appendChild(bookDiv);
+            const bookEditButton = document.createElement("button");
+            bookEditButton.textContent = "Edit";
+
+            bookDeleteButton.addEventListener("click", () => {
+                deleteBook(book.id);
+                renderBooks(array, container, showActions);
+            })
+
+            bookEditButton.addEventListener("click", () => {
+                state.currentBookId = book.id;
+                renderEditDialog(book.id);
+            })
+
+            bookDiv.appendChild(bookDeleteButton);
+            bookDiv.appendChild(bookEditButton);
+        }
+
+        container.appendChild(bookDiv);
     }
 }
 
@@ -115,5 +118,5 @@ export function renderSelectedBooks() {
         displayedBooks.sort((a ,b) => a.pages - b.pages);
     }
 
-    renderBooks(displayedBooks);
+    renderBooks(displayedBooks, elements.booksContainer, true);
 }
