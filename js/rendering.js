@@ -160,6 +160,7 @@ export function renderOverview() {
     elements.genreContainerUnorderedList.innerHTML = "";
     elements.authorContainerUnorderedList.innerHTML = "";
     elements.booksByAuthorsContainer.innerHTML = "";
+    elements.mostReadAuthorsOrderedList.innerHTML = "";
 
     for (const genre of state.genresRead) {
         const genreListItem = document.createElement("li");
@@ -191,5 +192,14 @@ export function renderOverview() {
         }
         
         elements.booksByAuthorsContainer.appendChild(booksByAuthorDiv);
+    }
+
+    for (const authorInfo of state.booksByAuthors) {
+        if (authorInfo.books.length < 2) {
+            continue;
+        }
+        const mostReadAuthorListItem = document.createElement("li");
+        mostReadAuthorListItem.textContent = authorInfo.author.concat(`, ${authorInfo.books.length} Books`);
+        elements.mostReadAuthorsOrderedList.appendChild(mostReadAuthorListItem);
     }
 }

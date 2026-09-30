@@ -22,6 +22,7 @@ export const elements = {
     genreContainerUnorderedList: document.querySelector("#genre-container-ul"),
     authorContainerUnorderedList: document.querySelector("#authors-container-ul"),
     booksByAuthorsContainer: document.querySelector("#books-by-authors-container"),
+    mostReadAuthorsOrderedList: document.querySelector("#most-read-authors-container-ol"),
 
     // Add book
     addBookButton: document.querySelector("#add-book-button"),
