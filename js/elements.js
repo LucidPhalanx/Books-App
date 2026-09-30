@@ -5,6 +5,7 @@ export const elements = {
     readingButton: document.querySelector("#reading-button"),
     wantToReadButton: document.querySelector("#want-to-read-button"),
     finishedButton: document.querySelector("#finished-button"),
+    favoriteViewButton: document.querySelector("#favorite-view-button"),
 
     // Sections
     overviewSection: document.querySelector("#overview-section"),
@@ -12,6 +13,7 @@ export const elements = {
     readingSection: document.querySelector("#reading-section"),
     wantToReadSection: document.querySelector("#want-to-read-section"),
     finishedSection: document.querySelector("#finished-section"),
+    favoriteSection: document.querySelector("#favorite-section"),
 
     // Overview
     totalBooksSpan: document.querySelector("#total-books-span"),
@@ -48,5 +50,6 @@ export const elements = {
     booksContainer: document.querySelector("#books-container"),
     currentlyReadingContainer: document.querySelector("#currently-reading-container"),
     wantToReadContainer: document.querySelector("#want-to-read-container"),
-    finishedContainer: document.querySelector("#finished-books-container")
+    finishedContainer: document.querySelector("#finished-books-container"),
+    favoriteContainer: document.querySelector("#favorite-books-container")
 };

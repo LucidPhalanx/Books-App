@@ -34,13 +34,19 @@ function showSection(sectionToShow) {
         elements.booksSection,
         elements.readingSection,
         elements.wantToReadSection,
-        elements.finishedSection
+        elements.finishedSection,
+        elements.favoriteSection
     ];
 
     sections.forEach(section => {
         section.style.display = section === sectionToShow ? "block" : "none";
     });
 }
+
+elements.favoriteViewButton.addEventListener("click", () => {
+    showSection(elements.favoriteSection);
+    renderBooks(state.books.filter(book => book.favorite), elements.favoriteContainer, false);
+})
 
 elements.overviewButton.addEventListener("click", () => {
     showSection(elements.overviewSection);
