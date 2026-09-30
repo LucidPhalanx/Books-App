@@ -104,5 +104,6 @@ elements.bookView.addEventListener("change", renderSelectedBooks);
 elements.bookSort.addEventListener("change", renderSelectedBooks);
 elements.searchBooksInput.addEventListener("change", renderSelectedBooks);
 elements.searchAuthorsInput.addEventListener("change", renderSelectedBooks);
+elements.searchGenresInput.addEventListener("change", renderSelectedBooks);
 
 initialize();
