@@ -130,25 +130,26 @@
 
             <input type="search" placeholder="Search genres..." id="search-genres-input">
 
+            <div class="filtering-controls">
+                <label for="book-view">View</label>
+                <select id="book-view">
+                    <option value="all">All Books</option>
+                    <option value="reading">Reading</option>
+                    <option value="want-to-read">Want to Read</option>
+                    <option value="finished">Finished</option>
+                </select>
 
-            <label for="book-view">View</label>
-            <select id="book-view">
-                <option value="all">All Books</option>
-                <option value="reading">Reading</option>
-                <option value="want-to-read">Want to Read</option>
-                <option value="finished">Finished</option>
-            </select>
-
-            <label for="book-sort">Sort</label>
-            <select id="book-sort">
-                <option value="none">Default</option>
-                <option value="title-asc">Title A-Z</option>
-                <option value="title-desc">Title Z-A</option>
-                <option value="rating-high">Rating: High to Low</option>
-                <option value="rating-low">Rating: Low to High</option>
-                <option value="pages-high">Pages: High to Low</option>
-                <option value="pages-low">Pages: Low to High</option>
-            </select>
+                <label for="book-sort">Sort</label>
+                <select id="book-sort">
+                    <option value="none">Default</option>
+                    <option value="title-asc">Title A-Z</option>
+                    <option value="title-desc">Title Z-A</option>
+                    <option value="rating-high">Rating: High to Low</option>
+                    <option value="rating-low">Rating: Low to High</option>
+                    <option value="pages-high">Pages: High to Low</option>
+                    <option value="pages-low">Pages: Low to High</option>
+                </select>
+            </div>
         </div>
 
         <div id="books-container"></div>

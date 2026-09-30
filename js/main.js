@@ -91,7 +91,9 @@ elements.saveBookButton.addEventListener("click", () => {
         clearDialog();
         renderOverview();
     } else if (elements.saveBookButton.textContent === "Edit") {
-        editBook(state.currentBookId, title, author, genre, pages, status, rating, notes);
+        const currentBook = state.books.find(book => book.id === state.currentBookId)
+        const isFavorite = currentBook.favorite;
+        editBook(state.currentBookId, title, author, genre, pages, status, rating, notes, isFavorite);
         renderBooks(state.books, elements.booksContainer, true);
         elements.saveBookButton.textContent = "Add Book";
         state.currentBookId = "";

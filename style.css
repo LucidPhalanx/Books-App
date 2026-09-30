@@ -108,3 +108,62 @@ button:hover {
 li {
   margin-bottom: 10px;
 }
+
+.book {
+    position: relative;
+    transition: all 0.1s ease;
+}
+
+.book-favorite-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid #555;
+    border-radius: 6px;
+    background-color: #0a0a2e;
+    color: #aaa;
+
+    font-size: 20px;
+    line-height: 1;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.book:hover {
+  transform: scale(1.01);
+}
+
+#books-container {
+  padding: 5px;
+}
+
+.book-controls {
+    border: solid 2px white;
+    padding: 10px;
+    position: relative;
+}
+
+.filtering-controls {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+
+
+
+
+
+
+
+

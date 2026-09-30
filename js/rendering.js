@@ -1,5 +1,5 @@
 import { elements } from "./elements.js";
-import { state } from "./state.js";
+import { state, saveState } from "./state.js";
 import { deleteBook } from "./books.js";
 
 export function renderBooks(array = state.books, container, showActions = true) {
@@ -9,6 +9,7 @@ export function renderBooks(array = state.books, container, showActions = true) 
         const bookDiv = document.createElement("div");
         bookDiv.id = book.id
         bookDiv.classList.add("book");
+        bookDiv.style.borderColor = book.favorite === true ? "yellow" : "white";
 
         const bookTitleHeading = document.createElement("h3");
         bookTitleHeading.textContent = book.title;
@@ -62,6 +63,12 @@ export function renderBooks(array = state.books, container, showActions = true) 
             bookEditButton.textContent = "Edit";
             bookEditButton.style.marginLeft = "5px";
 
+            const bookFavoriteButton = document.createElement("button");
+            bookFavoriteButton.classList.add("book-favorite-button");
+            bookFavoriteButton.style.backgroundColor = "#0A0A2E";
+            bookFavoriteButton.style.color = "yellow";
+            bookFavoriteButton.textContent = book.favorite ? "★" : "☆";
+
             bookDeleteButton.addEventListener("click", () => {
                 deleteBook(book.id);
                 renderBooks(array, container, showActions);
@@ -74,8 +81,22 @@ export function renderBooks(array = state.books, container, showActions = true) 
                 renderOverview();
             })
 
+            bookFavoriteButton.addEventListener("click", () => {
+                if (book.favorite) {
+                    book.favorite = false;
+                    bookDiv.style.borderColor = "white";
+                    bookFavoriteButton.textContent = "☆";
+                } else {
+                    book.favorite = true;
+                    bookDiv.style.borderColor = "yellow";
+                    bookFavoriteButton.textContent = "★";
+                }
+                saveState();
+            })
+
             bookDiv.appendChild(bookDeleteButton);
             bookDiv.appendChild(bookEditButton);
+            bookDiv.appendChild(bookFavoriteButton);
         }
 
         container.appendChild(bookDiv);
@@ -98,7 +119,6 @@ export function renderEditDialog(id) {
     elements.bookNotesInput.value = state.books[bookToEditIndex].notes;
 
     elements.addBookDialog.showModal();
-    
 }
 
 export function renderSelectedBooks() {

@@ -11,7 +11,8 @@ export function addBook(title, author, genre, pages, status, rating, notes) {
         pages: pages === null ? null : Number(pages),
         status: status,
         rating: rating === null ? null : Number(rating),
-        notes: notes
+        notes: notes,
+        favorite: false
     });
     
     updateState();
@@ -29,7 +30,7 @@ export function deleteBook(id) {
     saveState();
 }
 
-export function editBook(id, title, author, genre, pages, status, rating, notes) {
+export function editBook(id, title, author, genre, pages, status, rating, notes, isFavorite) {
     const bookToEditIndex = state.books.findIndex(book => book.id === id);
     if (bookToEditIndex === -1) {
         return;
@@ -43,8 +44,10 @@ export function editBook(id, title, author, genre, pages, status, rating, notes)
         pages: pages === null ? null : Number(pages),
         status: status,
         rating: rating === null ? null : Number(rating),
-        notes: notes
+        notes: notes,
+        favorite: isFavorite
     };
+    
     updateState();
     saveState();
 }
