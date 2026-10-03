@@ -163,6 +163,22 @@ export function renderSelectedBooks() {
         displayedBooks.sort((a, b) => b.pages - a.pages);
     } else if (elements.bookSort.value == "pages-low") {
         displayedBooks.sort((a ,b) => a.pages - b.pages);
+    } else if (elements.bookSort.value == "date-started-early-to-late") {
+        displayedBooks = displayedBooks.filter(book => book.status !== "want-to-read");
+        displayedBooks = displayedBooks.filter(book => book.dateStarted);
+        displayedBooks.sort((a, b) => new Date(a.dateStarted) - new Date(b.dateStarted));
+    } else if (elements.bookSort.value == "date-started-late-to-early") {
+        displayedBooks = displayedBooks.filter(book => book.status !== "want-to-read");
+        displayedBooks = displayedBooks.filter(book => book.dateStarted);
+        displayedBooks.sort((a, b) => new Date(b.dateStarted) - new Date(a.dateStarted));
+    } else if (elements.bookSort.value == "date-finished-early-to-late") {
+        displayedBooks = displayedBooks.filter(book => book.status == "finished");
+        displayedBooks = displayedBooks.filter(book => book.dateFinished);
+        displayedBooks.sort((a, b) => new Date(a.dateFinished) - new Date(b.dateFinished));
+    } else if (elements.bookSort.value == "date-finished-late-to-early") {
+        displayedBooks = displayedBooks.filter(book => book.status == "finished");
+        displayedBooks = displayedBooks.filter(book => book.dateFinished);
+        displayedBooks.sort((a, b) => new Date(b.dateFinished) - new Date(a.dateFinished));
     }
 
     displayedBooks = displayedBooks.filter(book => book.title?.toLowerCase().includes(elements.searchBooksInput.value.toLowerCase()));
