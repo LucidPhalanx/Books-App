@@ -45,6 +45,9 @@ export function renderBooks(array = state.books, container, showActions = true) 
 
         const bookDateStartedPara = document.createElement("p");
         bookDateStartedPara.textContent = book.dateStarted ? `Date Started: ${book.dateStarted}` : "";
+        if (book.status === "want-to-read") {
+            bookDateStartedPara.textContent = "";
+        }
 
         const bookDateFinishedPara = document.createElement("p");
         if (book.status === "reading") {
