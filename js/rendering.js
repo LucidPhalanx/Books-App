@@ -43,6 +43,18 @@ export function renderBooks(array = state.books, container, showActions = true) 
             bookRatingPara.textContent = "No Rating given yet";
         }
 
+        const bookDateStartedPara = document.createElement("p");
+        bookDateStartedPara.textContent = book.dateStarted ? `Date Started: ${book.dateStarted}` : "";
+
+        const bookDateFinishedPara = document.createElement("p");
+        if (book.status === "reading") {
+            bookDateFinishedPara.textContent = "Book is not finished yet.";
+        } else if (book.status === "want-to-read") {
+            bookDateFinishedPara.textContent = "";
+        } else if (book.status === "finished") {
+            bookDateFinishedPara.textContent = book.dateFinished ? `Date Finished: ${book.dateFinished}` : "";
+        }
+
         const bookNotesPara = document.createElement("p");
         bookNotesPara.textContent = book.notes !== "" ? `Notes: ${book.notes}` : "";
 
@@ -52,6 +64,8 @@ export function renderBooks(array = state.books, container, showActions = true) 
         bookDiv.appendChild(bookPagesPara);
         bookDiv.appendChild(bookStatusPara);
         bookDiv.appendChild(bookRatingPara);
+        bookDiv.appendChild(bookDateStartedPara);
+        bookDiv.appendChild(bookDateFinishedPara);
         bookDiv.appendChild(bookNotesPara);
         
         if (showActions == true) {
@@ -116,6 +130,8 @@ export function renderEditDialog(id) {
     elements.bookPagesInput.value = state.books[bookToEditIndex].pages;
     elements.bookStatusInput.value = state.books[bookToEditIndex].status;
     elements.bookRatingInput.value = state.books[bookToEditIndex].rating;
+    elements.bookDateStartedInput.value = state.books[bookToEditIndex].dateStarted;
+    elements.bookDateFinishedInput.value = state.books[bookToEditIndex].dateFinished;
     elements.bookNotesInput.value = state.books[bookToEditIndex].notes;
 
     elements.addBookDialog.showModal();

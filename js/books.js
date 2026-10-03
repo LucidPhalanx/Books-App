@@ -1,6 +1,6 @@
 import { state, saveState } from "./state.js";
 
-export function addBook(title, author, genre, pages, status, rating, notes) {
+export function addBook(title, author, genre, pages, status, rating, dateStarted, dateFinished, notes) {
     const id = crypto.randomUUID();
 
     state.books.push({
@@ -11,6 +11,8 @@ export function addBook(title, author, genre, pages, status, rating, notes) {
         pages: pages === null ? null : Number(pages),
         status: status,
         rating: rating === null ? null : Number(rating),
+        dateStarted: dateStarted,
+        dateFinished: dateFinished,
         notes: notes,
         favorite: false
     });
@@ -30,7 +32,7 @@ export function deleteBook(id) {
     saveState();
 }
 
-export function editBook(id, title, author, genre, pages, status, rating, notes, isFavorite) {
+export function editBook(id, title, author, genre, pages, status, rating, dateStarted, dateFinished, notes, isFavorite) {
     const bookToEditIndex = state.books.findIndex(book => book.id === id);
     if (bookToEditIndex === -1) {
         return;
@@ -44,6 +46,8 @@ export function editBook(id, title, author, genre, pages, status, rating, notes,
         pages: pages === null ? null : Number(pages),
         status: status,
         rating: rating === null ? null : Number(rating),
+        dateStarted: dateStarted,
+        dateFinished: dateFinished,
         notes: notes,
         favorite: isFavorite
     };

@@ -96,7 +96,7 @@ button:hover {
     background-color: red;
 }
 
-.title-input-class, .author-input-class, .genre-input-class, .pages-input-class, .status-input-class, .rating-input-class, .notes-input-class {
+.title-input-class, .author-input-class, .genre-input-class, .pages-input-class, .status-input-class, .rating-input-class, .notes-input-class, .date-started-input-class, .date-finished-input-class {
   margin-bottom: 20px;
   text-align: left;
 }

@@ -23,6 +23,8 @@ function clearDialog() {
     elements.bookPagesInput.value = 0;
     elements.bookStatusInput.value = "want-to-read";
     elements.bookRatingInput.value = "";
+    elements.bookDateStartedInput.value = "";
+    elements.bookDateFinishedInput.value = "";
     elements.bookNotesInput.value = "";
 
     elements.addBookDialog.close();
@@ -89,17 +91,19 @@ elements.saveBookButton.addEventListener("click", () => {
     const pages = elements.bookPagesInput.value === "" ? null :  Number(elements.bookPagesInput.value);
     const status = elements.bookStatusInput.value;
     const rating = elements.bookRatingInput.value === "" ? null : Number(elements.bookRatingInput.value);
+    const dateStarted = elements.bookDateStartedInput.value;
+    const dateFinished = elements.bookDateFinishedInput.value;
     const notes = elements.bookNotesInput.value;
 
     if (elements.saveBookButton.textContent === "Add Book") {
-        addBook(title, author, genre, pages, status, rating, notes);
+        addBook(title, author, genre, pages, status, rating, dateStarted, dateFinished, notes);
         renderBooks(state.books, elements.booksContainer, true);
         clearDialog();
         renderOverview();
     } else if (elements.saveBookButton.textContent === "Edit") {
         const currentBook = state.books.find(book => book.id === state.currentBookId)
         const isFavorite = currentBook.favorite;
-        editBook(state.currentBookId, title, author, genre, pages, status, rating, notes, isFavorite);
+        editBook(state.currentBookId, title, author, genre, pages, status, rating, dateStarted, dateFinished, notes, isFavorite);
         renderBooks(state.books, elements.booksContainer, true);
         elements.saveBookButton.textContent = "Add Book";
         state.currentBookId = "";

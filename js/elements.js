@@ -36,6 +36,8 @@ export const elements = {
     bookStatusInput: document.querySelector("#book-status-input"),
     bookRatingInput: document.querySelector("#book-rating-input"),
     bookNotesInput: document.querySelector("#book-notes-input"),
+    bookDateStartedInput: document.querySelector("#date-started-input"),
+    bookDateFinishedInput: document.querySelector("#date-finished-input"),
 
     saveBookButton: document.querySelector("#save-book-button"),
     cancelAddBookButton: document.querySelector("#cancel-add-book-button"),
