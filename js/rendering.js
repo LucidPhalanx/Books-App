@@ -156,12 +156,16 @@ export function renderSelectedBooks() {
     } else if (elements.bookSort.value == "title-desc") {
         displayedBooks.sort((a, b) => b.title.localeCompare(a.title));
     } else if (elements.bookSort.value == "rating-high") {
+        displayedBooks = displayedBooks.filter((book) => book.rating);
         displayedBooks.sort((a, b) => b.rating - a.rating);
     } else if (elements.bookSort.value == "rating-low") {
+        displayedBooks = displayedBooks.filter((book) => book.rating);
         displayedBooks.sort((a, b) => a.rating - b.rating);
     } else if (elements.bookSort.value == "pages-high") {
+        displayedBooks = displayedBooks.filter((book) => book.pages);
         displayedBooks.sort((a, b) => b.pages - a.pages);
     } else if (elements.bookSort.value == "pages-low") {
+        displayedBooks = displayedBooks.filter((book) => book.pages);
         displayedBooks.sort((a ,b) => a.pages - b.pages);
     } else if (elements.bookSort.value == "date-started-early-to-late") {
         displayedBooks = displayedBooks.filter(book => book.status !== "want-to-read");
