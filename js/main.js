@@ -95,6 +95,11 @@ elements.saveBookButton.addEventListener("click", () => {
     const dateFinished = elements.bookDateFinishedInput.value;
     const notes = elements.bookNotesInput.value;
 
+    if (!title || !author || !status) {
+        alert("Fill out the form.");
+        return;
+    }
+
     if (elements.saveBookButton.textContent === "Add Book") {
         addBook(title, author, genre, pages, status, rating, dateStarted, dateFinished, notes);
         renderBooks(state.books, elements.booksContainer, true);
