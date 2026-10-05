@@ -8,11 +8,12 @@ function initialize() {
     elements.bookSort.value = "none";
     elements.searchBooksInput.value = "";
     elements.searchAuthorsInput.value = "";
+    elements.searchGenresInput.value = "";
 
     loadState();
+    updateState();
     showSection(elements.overviewSection);
     renderBooks(state.books, elements.booksContainer, true);
-    updateState();
     renderOverview();
 }
 
@@ -88,7 +89,7 @@ elements.saveBookButton.addEventListener("click", () => {
     const title = elements.bookTitleInput.value.trim();
     const author = elements.bookAuthorInput.value.trim();
     const genre = elements.bookGenreInput.value.trim();
-    const pages = elements.bookPagesInput.value === "" ? null :  Number(elements.bookPagesInput.value);
+    const pages = elements.bookPagesInput.value === "" ? null : Number(elements.bookPagesInput.value);
     const status = elements.bookStatusInput.value;
     const rating = elements.bookRatingInput.value === "" ? null : Number(elements.bookRatingInput.value);
     const dateStarted = elements.bookDateStartedInput.value;
